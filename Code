@@ -1,0 +1,78 @@
+// Link : https://www.programiz.com/online-compiler/1POrUp3vqlZK1
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main() {
+int employees; //1. Asks the user how many employees will be evaluated. (1pnt) 
+
+cout << "Hello! How many employees will be evaluated?" << " Enter a number: ";
+cin >> employees;
+
+for (int i = 1; i <= employees; i++) {
+    string employee_name;
+    int days_worked;  // must validate for ints only
+    int day_highest;
+    int day_lowest;
+    double productivity_score;
+    double score_sum = 0;
+    double average_score;
+    double highest_score = 0;
+    double lowest_score = 100;
+    cout << "\nEmployee " << i << endl; 
+    cout << "1. What is the employee's name?\n" << "Name: "; //2. Ask for the employee’s name. 
+    getline(cin >> ws, employee_name); // getline wasnt working, had to do it like this
+    cout << "\n2. How many days have they worked this month?\n" << "Enter days worked: "; //2.2 days worked
+    cin >> days_worked;
+    while (!(days_worked > 0 && days_worked <= 31)) { //checking if its 1-31
+            cout << "Number must be between 1 and 31." << endl;
+            cout << "Please enter a valid number: ";
+            cin >> days_worked;
+            }
+        
+    cout << "\n3. Please enter productivity score.\nMust be beteween 1 and 100\n"; 
+    //2.3 productivity score
+    for (int i = 1; i <= days_worked; i++) {
+        cout << "Day " << i << " Score: ";
+        cin >> productivity_score;
+        score_sum += productivity_score; //total score
+        if (productivity_score > highest_score) { //highest score
+                highest_score = productivity_score;
+                day_highest = i;
+            }
+
+        if (productivity_score < lowest_score) { // lowest score
+            lowest_score = productivity_score;
+            day_lowest = i;
+            }
+         
+        
+        //while checks if its 0-100
+        while (!(productivity_score > 0 && productivity_score <= 100)) {
+            cout << "\nNumber must be between 1 and 100." << endl;
+            cout << "Please enter a valid number: ";
+            cin >> productivity_score;
+            }
+        }
+       // preformance rating 
+average_score = score_sum / days_worked;    
+cout << "\nHere is " << employee_name << "'s preformance rating!\n";
+cout << "Total score: " << score_sum << endl;
+cout << "Average Score 1: " << average_score << endl;
+cout << "Highest Score: " << highest_score; cout << " on day " << day_highest << endl;
+cout << "Lowest Score: " << lowest_score; cout << " on day " << day_lowest << endl;
+if (average_score >= 80) {
+    cout << "Preformance rating: Excellent! Keep up the good work!\n";
+        }
+else if (average_score < 60) {
+    cout << "Preformance rating: Needs improvement. A lot of improvement, try harder?\n";
+        }
+else {
+cout << "Preformance rating: Good. You did well.\n";
+        }
+
+}
+return 0;
+}
+
